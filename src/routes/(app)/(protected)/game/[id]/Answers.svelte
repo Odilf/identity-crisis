@@ -16,6 +16,12 @@
 
 	export let isHost: boolean;
 
+	export let question: {
+		prompt: string;
+		left: string;
+		right: string;
+	};
+
 	$: target_answer = unwrap(answers.find((answer) => answer.player_id === target.id));
 	$: player_answers = answers
 		.filter((answer) => answer.player_id !== target.id)
@@ -27,10 +33,12 @@
 </script>
 
 <main class="flex flex-col h-full">
-	<h1 class="h1 text-3xl">What {target.username} thinks of themselves</h1>
+	<h1 class="h1 text-5xl pb-8"> {question.prompt} </h1>
+
+	<h2 class="text-3xl font-bold">What {target.username} thinks of themselves</h2>
 	<Slider value={target_answer.value} disabled />
 
-	<h2 class="h2 text-xl pt-4 pb-2">What other players think of {target.username}</h2>
+	<h3 class="text-xl font-bold pt-4 pb-2">What other players think of {target.username}</h3>
 	{#each player_answers as answer}
 		<div>
 			<div class="font-light">
@@ -41,6 +49,7 @@
 	{/each}
 
 	<div class="flex-1" />
+
 
 	{#if isHost}
 		<form method="post" use:enhance action="?/getQuestion" class="w-full">

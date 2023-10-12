@@ -10,6 +10,7 @@
 	};
 
 	export let value: number;
+	export let target_player_username: string;
 </script>
 
 <form
@@ -24,7 +25,8 @@
 >
 	<div class="flex-1" />
 
-	<h1 class="h1 text-center">{question.prompt}</h1>
+	<h1 class="h1 text-5xl pb-6 text-center">{question.prompt}</h1>
+	<h2 class="text-2xl text-center pb-12"> Answer for {target_player_username} </h2>
 	<div>
 		<div class="font-light w-full">{question.left ?? 'Totally'}</div>
 		<Slider {value} name="answer" />

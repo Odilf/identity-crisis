@@ -4,7 +4,7 @@
 	import unwrap from 'ts-unwrap';
 	import { invalidate } from '$app/navigation';
 	import { onDestroy } from 'svelte';
-	import EnterResult from './EnterResult.svelte';
+	import EnterResult from './EnterAnswer.svelte';
 	import Answers from './Answers.svelte';
 
 	export let data;
@@ -100,6 +100,7 @@
 			left: unwrap(data.game.question_left),
 			right: unwrap(data.game.question_right)
 		}}
+		target_player_username={unwrap(data.game.target_player_username)}
 	/>
 {:else}
 	<Answers
@@ -113,5 +114,10 @@
 			username: unwrap(data.game.target_player_username)
 		}}
 		{isHost}
+		question={{
+			prompt: unwrap(data.game.question_prompt),
+			left: unwrap(data.game.question_left),
+			right: unwrap(data.game.question_right)
+		}}
 	/>
 {/if}
